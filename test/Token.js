@@ -5,7 +5,6 @@ const tokens = (n) => {
 	return ethers.utils.parseUnits(n.toString(), 'ether')
 }
 
-
 describe('Token', () => {
 	let token, 
 			accounts, 	
@@ -23,7 +22,6 @@ describe('Token', () => {
 		const symbol = 'RODD'
 		const decimals = '18'
 		const totalSupply = tokens('1000000')
-
 
 		it('has correct name', async () => {
 			expect(await token.name()).to.equal(name)
