@@ -19,7 +19,7 @@ async function main() {
 
   // Fetch deployed tokens
   const DApp = await ethers.getContractAt('Token', config[chainId].DApp.address)
-  console.log(`DApp Token fetched: ${DApp.address}\n`)
+  console.log(`Dapp Token fetched: ${DApp.address}\n`)
 
   const mETH = await ethers.getContractAt('Token', config[chainId].mETH.address)
   console.log(`mETH Token fetched: ${mETH.address}\n`)

@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: Unlicensed
+//SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
@@ -35,10 +35,7 @@ contract Token {
         balanceOf[msg.sender] = totalSupply;
     }
 
-    function transfer(
-    	address _to, 
-    	uint256 _value
-    )
+    function transfer(address _to, uint256 _value)
         public
         returns (bool success)
     {
@@ -50,22 +47,19 @@ contract Token {
     }
 
     function _transfer(
-    	address _from,
-    	address _to,
-    	uint256 _value
-    )	internal {
-    		require(_to != address(0));
+        address _from,
+        address _to,
+        uint256 _value
+    ) internal {
+        require(_to != address(0));
 
-    		balanceOf[_from] = balanceOf[_from] - _value;
+        balanceOf[_from] = balanceOf[_from] - _value;
         balanceOf[_to] = balanceOf[_to] + _value;
 
-        emit Transfer(_from	, _to, _value);
+        emit Transfer(_from, _to, _value);
     }
 
-    function approve(
-    	address _spender, 
-    	uint256 _value
-    )
+    function approve(address _spender, uint256 _value)
         public
         returns(bool success)
     {
@@ -77,18 +71,18 @@ contract Token {
         return true;
     }
 
-		function transferFrom(
-			address _from, 
-			address _to, 
-			uint256 _value
-		)
+    function transferFrom(
+        address _from,
+        address _to,
+        uint256 _value
+    )
         public
-        returns(bool success)
+        returns (bool success)
     {
         require(_value <= balanceOf[_from]);
         require(_value <= allowance[_from][msg.sender]);
 
-        allowance[_from][msg.sender] = allowance[_from][msg.sender] -_value;
+        allowance[_from][msg.sender] = allowance[_from][msg.sender] - _value;
 
         _transfer(_from, _to, _value);
 

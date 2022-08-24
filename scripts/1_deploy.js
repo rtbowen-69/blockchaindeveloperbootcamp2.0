@@ -1,14 +1,14 @@
 async function main() {
-  console.log(`Preparing deployment...|n`)
+  console.log(`Preparing deployment...\n`)
 
-  // Fetch contracts to deploy
+  // Fetch contract to deploy
   const Token = await ethers.getContractFactory('Token')
   const Exchange = await ethers.getContractFactory('Exchange')
 
-  // Fetch Accounts
+  // Fetch accounts
   const accounts = await ethers.getSigners()
 
-  console.log('Accounts fetched:\n${accounts[0].address}\n${accounts[1].address}\n')
+  console.log(`Accounts fetched:\n${accounts[0].address}\n${accounts[1].address}\n`)
 
   // Deploy contracts
   const dapp = await Token.deploy('Dapp University', 'DAPP', '1000000')
@@ -19,7 +19,7 @@ async function main() {
   await mETH.deployed()
   console.log(`mETH Deployed to: ${mETH.address}`)
 
-  const mDAI = await Token.deploy('mDAI', 'mDai', '1000000')
+  const mDAI = await Token.deploy('mDAI', 'mDAI', '1000000')
   await mDAI.deployed()
   console.log(`mDAI Deployed to: ${mDAI.address}`)
 
