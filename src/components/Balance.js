@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import dapp from '../assets/dapp.svg';
 import eth from '../assets/eth.svg';
 
-import { 
+import {
   loadBalances,
   transferTokens
 } from '../store/interactions';
@@ -72,13 +72,15 @@ const Balance = () => {
       transferTokens(provider, exchange, 'Withdraw', token, token2TransferAmount, dispatch)
       setToken2TransferAmount(0)
     }
+
+    console.log("withdrawing tokens.....")
   }
 
   useEffect(() => {
     if(exchange && tokens[0] && tokens[1] && account) {
       loadBalances(exchange, tokens, account, dispatch)
     }
-  }, [exchange, tokens, account, transferInProgress])
+  }, [exchange, tokens, account, transferInProgress, dispatch ])
 
   return (
     <div className='component exchange__transfers'>
@@ -102,21 +104,21 @@ const Balance = () => {
         <form onSubmit={isDeposit ? (e) => depositHandler(e, tokens[0]) : (e) => withdrawHandler(e, tokens[0])}>
           <label htmlFor="token0">{symbols && symbols[0]} Amount</label>
           <input
-            type="text" 
-            id='token0' 
-            placeholder='0.0000' 
+            type="text"
+            id='token0'
+            placeholder='0.0000'
             value={token1TransferAmount === 0 ? '' : token1TransferAmount}
-            onChange={(e) => amountHandler(e, tokens[0])}/> 
+            onChange={(e) => amountHandler(e, tokens[0])}/>
 
           <button className='button' type='submit'>
             {isDeposit ? (
-              <span>Deposit</span>
+                <span>Deposit</span>
             ) : (
-              <span>Withdraw</span>
-            )}            
+                <span>Withdraw</span>
+            )}
           </button>
         </form>
-      </div>]
+      </div>
 
       <hr />
 
@@ -130,20 +132,21 @@ const Balance = () => {
         </div>
 
         <form onSubmit={isDeposit ? (e) => depositHandler(e, tokens[1]) : (e) => withdrawHandler(e, tokens[1])}>
-          <label htmlFor="token1">{symbols && symbols[1]} Amount</label>
-          <input 
-            type="text" 
-            id='token1' 
+          <label htmlFor="token1"></label>
+          <input
+            type="text"
+            id='token1'
             placeholder='0.0000'
             value={token2TransferAmount === 0 ? '' : token2TransferAmount}
-            onChange={(e) => amountHandler(e, tokens[1])}/>
+            onChange={(e) => amountHandler(e, tokens[1])}
+          />
 
           <button className='button' type='submit'>
             {isDeposit ? (
-              <span>Deposit</span>
+                <span>Deposit</span>
             ) : (
-              <span>Withdraw</span>
-            )}            
+                <span>Withdraw</span>
+            )}
           </button>
         </form>
       </div>
