@@ -190,7 +190,7 @@ export const myFilledOrdersSelector = createSelector(
     // Sort by date descending
     orders = orders.sort((a, b) => b.timestamp - a.timestamp)
 
-    // Decorare orders - add display attributes
+    // Decorate orders - add display attributes
     orders = decorateMyFilledOrders(orders, account, tokens)
 
   return orders
