@@ -220,5 +220,3 @@ export const makeSellOrder =  async (provider, exchange, tokens, order, dispatch
   }
  }
  
-
-
